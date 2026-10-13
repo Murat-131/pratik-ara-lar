@@ -1,2 +1,2 @@
-# pratik-ara-lar
+# pratik-araclar
 Ücretsiz ve kullanışlı internet araçları 
