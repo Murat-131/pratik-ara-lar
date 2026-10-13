@@ -12,7 +12,7 @@ h1{color:#60a5fa}
 main{max-width:650px;margin:25px auto;padding:15px}
 .card{background:#1e293b;padding:22px;margin:16px 0;border-radius:16px}
 input{box-sizing:border-box;width:100%;padding:13px;border-radius:8px;border:0;margin:10px 0}
-button{background:#3b82f6;color:white;border:0;border-radius:8px;padding:12px 18px;font-size:16px}
+button{background:#3b82f6;color:white;border:0;border-radius:8px;padding:12px 18px;font-size:16px;cursor:pointer;margin:4px}
 .result{color:#93c5fd;font-size:20px}
 footer{padding:25px;color:#94a3b8}
 </style>
@@ -22,6 +22,7 @@ footer{padding:25px;color:#94a3b8}
 <h1>Pratik Araçlar 🚀</h1>
 <p>Günlük işlerini kolaylaştıran ücretsiz araçlar.</p>
 </header>
+
 <main>
 <div class="card">
 <h2>🧮 Hesap Makinesi</h2>
@@ -33,38 +34,66 @@ footer{padding:25px;color:#94a3b8}
 <button onclick="hesapla('/')">Böl ÷</button>
 <p id="sonuc" class="result">Sonuç burada görünür.</p>
 </div>
+
 <div class="card">
 <h2>📝 Kelime Sayacı</h2>
 <input id="metin" placeholder="Metnini buraya yaz">
 <button onclick="say()">Kelime say</button>
 <p id="kelime" class="result">0 kelime</p>
 </div>
+
+<div class="card">
+<h2>📊 Yüzde Hesaplama</h2>
+<input id="sayi" type="number" placeholder="Sayı (Örn. 200)">
+<input id="oran" type="number" placeholder="Yüzde (Örn. 15)">
+<button onclick="yuzdeHesapla()">Hesapla</button>
+<p id="yuzdeSonuc" class="result">Sonuç burada görünecek.</p>
+</div>
 </main>
+
 <footer>Pratik Araçlar © 2026 · Ücretsiz kullanım</footer>
+
 <script>
 function hesapla(islem){
-let a=Number(document.getElementById('a').value);
-let b=Number(document.getElementById('b').value);
-if(document.getElementById('a').value===''||document.getElementById('b').value===''){document.getElementById('sonuc').textContent='İki sayıyı da gir.';return}
-if(islem==='/'&&b===0){document.getElementById('sonuc').textContent='Sıfıra bölünemez.';return}
-let r=islem==='+'?a+b:islem==='-'?a-b:islem==='*'?a*b:a/b;
-document.getElementById('sonuc').textContent='Sonuç: '+r;
+const x=document.getElementById('a').value;
+const y=document.getElementById('b').value;
+const sonuc=document.getElementById('sonuc');
+
+if(x===''||y===''){
+sonuc.textContent='İki sayıyı da gir.';
+return;
 }
+
+const a=Number(x);
+const b=Number(y);
+
+if(islem==='/'&&b===0){
+sonuc.textContent='Sıfıra bölünemez.';
+return;
+}
+
+const r=islem==='+'?a+b:islem==='-'?a-b:islem==='*'?a*b:a/b;
+sonuc.textContent='Sonuç: '+r;
+}
+
 function say(){
-let t=document.getElementById('metin').value.trim();
+const t=document.getElementById('metin').value.trim();
 document.getElementById('kelime').textContent=(t?t.split(/\s+/).length:0)+' kelime';
+}
+
+function yuzdeHesapla(){
+const x=document.getElementById('sayi').value;
+const y=document.getElementById('oran').value;
+const sonuc=document.getElementById('yuzdeSonuc');
+
+if(x===''||y===''){
+sonuc.textContent='Sayıyı ve yüzde oranını gir.';
+return;
+}
+
+sonuc.textContent='Sonuç: '+(Number(x)*Number(y)/100);
 }
 </script>
 </body>
-  
-<section style="max-width:400px;margin:25px auto;padding:20px;background:#f1f5f9;border-radius:14px;color:#111827;font-family:Arial,sans-serif;">
-  <h2>Yüzde Hesaplama</h2>
-  <label for="sayi">Sayı:</label>
-  <input id="sayi" type="number" placeholder="Örn. 200" style="width:100%;padding:12px;box-sizing:border-box;margin:8px 0;">
-  <label for="oran">Yüzde (%):</label>
-  <input id="oran" type="number" placeholder="Örn. 15" style="width:100%;padding:12px;box-sizing:border-box;margin:8px 0;">
-  <button onclick="document.getElementById('sonuc').textContent='Sonuç: '+(Number(document.getElementById('sayi').value)*Number(document.getElementById('oran').value)/100)" style="padding:12px 18px;background:#2563eb;color:white;border:0;border-radius:8px;">Hesapla</button>
-  <p id="sonuc" aria-live="polite">Sonuç burada görünecek.</p>
-</section>
-  
 </html>
+
