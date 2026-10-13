@@ -56,4 +56,15 @@ document.getElementById('kelime').textContent=(t?t.split(/\s+/).length:0)+' keli
 }
 </script>
 </body>
+  
+<section style="max-width:400px;margin:25px auto;padding:20px;background:#f1f5f9;border-radius:14px;color:#111827;font-family:Arial,sans-serif;">
+  <h2>Yüzde Hesaplama</h2>
+  <label for="sayi">Sayı:</label>
+  <input id="sayi" type="number" placeholder="Örn. 200" style="width:100%;padding:12px;box-sizing:border-box;margin:8px 0;">
+  <label for="oran">Yüzde (%):</label>
+  <input id="oran" type="number" placeholder="Örn. 15" style="width:100%;padding:12px;box-sizing:border-box;margin:8px 0;">
+  <button onclick="document.getElementById('sonuc').textContent='Sonuç: '+(Number(document.getElementById('sayi').value)*Number(document.getElementById('oran').value)/100)" style="padding:12px 18px;background:#2563eb;color:white;border:0;border-radius:8px;">Hesapla</button>
+  <p id="sonuc" aria-live="polite">Sonuç burada görünecek.</p>
+</section>
+  
 </html>
